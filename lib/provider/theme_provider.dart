@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import '../utils/theme_data.dart';
 
 class ThemeProvider with ChangeNotifier {
   final String key = 'theme';
@@ -16,21 +17,9 @@ class ThemeProvider with ChangeNotifier {
     }
   }
 
-  ThemeData dark() {
-    return ThemeData.dark().copyWith(cardColor: Colors.black54);
-  }
-
-  ThemeData light() {
-    return ThemeData.light().copyWith(
-      appBarTheme: AppBarTheme(
-        color: Colors.orange
-      )
-    );
-  }
-
   bool get isDarkTheme => _darkTheme;
   ThemeData get getTheme {
-    return _darkTheme ? dark() : light();
+    return _darkTheme ? darkTheme : lightTheme;
   }
 
   toggleTheme() {

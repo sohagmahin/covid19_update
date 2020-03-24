@@ -1,5 +1,6 @@
 import 'package:fl_chart/fl_chart.dart';
 import 'package:flutter/material.dart';
+import 'caution_type_writer.dart';
 import 'indicator.dart';
 import 'package:provider/provider.dart';
 import '../provider/cases_provider.dart';
@@ -20,115 +21,127 @@ class PieChart2State extends State {
   @override
   Widget build(BuildContext context) {
     return Card(
-      child: Row(
+      child: Column(
         children: <Widget>[
-          const SizedBox(
-            height: 10,
-          ),
-          Expanded(
-            child: AspectRatio(
-              aspectRatio: 1,
-              child: Consumer<CasesProvider>(
-                  child: Center(
-                    child: CircularProgressIndicator(),
-                  ),
-                  builder: (context, model, ch) {
-                    return model.loadingStatus
-                        ? ch
-                        : PieChart(
-                            PieChartData(
-                              pieTouchData: PieTouchData(
-                                  touchCallback: (pieTouchResponse) {
-                                setState(() {
-                                  if (pieTouchResponse.touchInput
-                                          is FlLongPressEnd ||
-                                      pieTouchResponse.touchInput is FlPanEnd) {
-                                    touchedIndex = -1;
-                                  } else {
-                                    touchedIndex =
-                                        pieTouchResponse.touchedSectionIndex;
-                                  }
-                                });
-                              }),
-                              borderData: FlBorderData(
-                                show: false,
-                              ),
-                              sectionsSpace: 0,
-                              centerSpaceRadius: 40,
-                              sections: showingSections(
-                                model.casesWD.confirmed,
-                                model.casesWD.deaths,
-                                model.casesWD.recovered,
-                              ),
-                            ),
-                          );
-                  }),
-            ),
-          ),
-          Column(
-            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+          Row(
             children: <Widget>[
-              Text(
-                'Stay Home',
-                style: TextStyle(
-                  fontSize: 30,
-                  fontWeight: FontWeight.bold,
-                  fontStyle: FontStyle.italic,
-                  shadows: <Shadow>[
-                    Shadow(
-                      offset: Offset(6.0, 6.0),
-                      blurRadius: 3.0,
-                      color: Colors.green,
-                    ),
-                    Shadow(
-                      offset: Offset(6.0, 6.0),
-                      blurRadius: 8.0,
-                      color: Color.fromARGB(125, 0, 0, 255),
-                    ),
-                  ],
+              const SizedBox(
+                height: 10,
+              ),
+              Expanded(
+                child: AspectRatio(
+                  aspectRatio: 1,
+                  child: Consumer<CasesProvider>(
+                      child: Center(
+                        child: CircularProgressIndicator(),
+                      ),
+                      builder: (context, model, ch) {
+                        return model.loadingStatus ? ch : _buildPieChart(model);
+                      }),
                 ),
               ),
               Column(
-                mainAxisSize: MainAxisSize.max,
-                mainAxisAlignment: MainAxisAlignment.end,
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: const <Widget>[
-                  SizedBox(
-                    height: 4,
-                  ),
-                  Indicator(
-                    color: Color(0xfff8b250),
-                    text: 'Confirmed',
-                    isSquare: true,
-                  ),
-                  SizedBox(
-                    height: 4,
-                  ),
-                  Indicator(
-                    color: Color(0xffE71C23),
-                    text: 'Deaths',
-                    isSquare: true,
-                  ),
-                  SizedBox(
-                    height: 4,
-                  ),
-                  Indicator(
-                    color: Color(0xff13d38e),
-                    text: 'Recovered',
-                    isSquare: true,
-                  ),
-                  SizedBox(
-                    height: 18,
-                  ),
+                mainAxisAlignment: MainAxisAlignment.spaceAround,
+                children: <Widget>[
+                  _buildLabelText(),
+                  _buildIndicators(),
                 ],
+              ),
+              const SizedBox(
+                width: 28,
               ),
             ],
           ),
-          const SizedBox(
-            width: 28,
+          CautionTypeWriter(),
+        ],
+      ),
+    );
+  }
+
+  PieChart _buildPieChart(CasesProvider model) {
+    return PieChart(
+      PieChartData(
+        pieTouchData: PieTouchData(touchCallback: (pieTouchResponse) {
+          setState(() {
+            if (pieTouchResponse.touchInput is FlLongPressEnd ||
+                pieTouchResponse.touchInput is FlPanEnd) {
+              touchedIndex = -1;
+            } else {
+              touchedIndex = pieTouchResponse.touchedSectionIndex;
+            }
+          });
+        }),
+        borderData: FlBorderData(
+          show: false,
+        ),
+        sectionsSpace: 0,
+        centerSpaceRadius: 40,
+        sections: showingSections(
+          model.casesWD.confirmed,
+          model.casesWD.deaths,
+          model.casesWD.recovered,
+        ),
+      ),
+    );
+  }
+
+  Text _buildLabelText() {
+    return Text(
+      'World Covid19',
+      style: TextStyle(
+        fontSize: 25,
+        fontWeight: FontWeight.bold,
+        fontStyle: FontStyle.italic,
+        shadows: <Shadow>[
+          Shadow(
+            offset: Offset(6.0, 6.0),
+            blurRadius: 3.0,
+            color: Colors.green,
+          ),
+          Shadow(
+            offset: Offset(6.0, 6.0),
+            blurRadius: 8.0,
+            color: Color.fromARGB(125, 0, 0, 255),
           ),
         ],
       ),
+    );
+  }
+
+  Column _buildIndicators() {
+    return Column(
+      mainAxisSize: MainAxisSize.max,
+      mainAxisAlignment: MainAxisAlignment.end,
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: const <Widget>[
+        SizedBox(
+          height: 4,
+        ),
+        Indicator(
+          color: Color(0xfff8b250),
+          text: 'Confirmed',
+          isSquare: true,
+        ),
+        SizedBox(
+          height: 4,
+        ),
+        Indicator(
+          color: Color(0xffE71C23),
+          text: 'Deaths',
+          isSquare: true,
+        ),
+        SizedBox(
+          height: 4,
+        ),
+        Indicator(
+          color: Color(0xff13d38e),
+          text: 'Recovered',
+          isSquare: true,
+        ),
+        SizedBox(
+          height: 18,
+        ),
+      ],
     );
   }
 

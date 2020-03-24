@@ -27,6 +27,7 @@ dependencies:
   provider: ^4.0.4
   http: ^0.12.0+4
   shared_preferences: ^0.5.6+3
+  animated_text_kit: ^2.0.0
 
 dev_dependencies:
   flutter_test:
@@ -60,12 +61,13 @@ flutter:
   # "family" key with the font family name, and a "fonts" key with a
   # list giving the asset and other descriptors for the font. For
   # example:
-  # fonts:
-  #   - family: Schyler
-  #     fonts:
-  #       - asset: fonts/Schyler-Regular.ttf
-  #       - asset: fonts/Schyler-Italic.ttf
-  #         style: italic
+  fonts:
+     - family: Merienda
+       fonts:
+         - asset: assets/fonts/merienda_bold.ttf
+     - family: Balooda2
+       fonts:
+         - asset: assets/fonts/balooda2_regular.ttf
   #   - family: Trajan Pro
   #     fonts:
   #       - asset: fonts/TrajanPro.ttf
