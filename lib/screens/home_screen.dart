@@ -20,6 +20,21 @@ class HomeScreen extends StatelessWidget {
                 centerTitle: true,
                 automaticallyImplyLeading: false,
               ),
+              ListTile(
+                leading: Icon(Icons.person_outline),
+                title: Text('About'),
+                onTap: () {
+                  showDialog(
+                      context: context,
+                      builder: (context) {
+                        return AlertDialog(
+                          title: Text('About'),
+                          content: Text(
+                              'Build by Flutter!\nCreated by SOHAG\nFacebook: fb.com/sohagmahin\nEmail: sohagmahin@gmail.com'),
+                        );
+                      });
+                },
+              ),
             ],
           ),
         ),
