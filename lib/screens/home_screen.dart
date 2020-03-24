@@ -1,11 +1,15 @@
 import 'dart:io';
-
+import 'package:coronavirustracker/provider/cases_provider.dart';
 import 'package:coronavirustracker/widgets/data_table_screen.dart';
 import 'package:coronavirustracker/widgets/pie_chart.dart';
 import 'package:coronavirustracker/widgets/theme_dropdownButton.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import 'package:pull_to_refresh/pull_to_refresh.dart';
+import '../widgets/app_drawer.dart';
 
 class HomeScreen extends StatelessWidget {
+  final RefreshController _refreshController = RefreshController();
   @override
   Widget build(BuildContext context) {
     return WillPopScope(
@@ -16,37 +20,23 @@ class HomeScreen extends StatelessWidget {
             centerTitle: true,
             actions: <Widget>[ThemeDropdownButton()],
           ),
-          drawer: Drawer(
+          drawer: AppDrawer(),
+          body: SmartRefresher(
+            controller: _refreshController,
+            enablePullDown: true,
+            onRefresh: () async {
+              var casesProviderObj =
+                  Provider.of<CasesProvider>(context, listen: false);
+              casesProviderObj.setLoadingStatus(true);
+              await casesProviderObj.initialCall();
+              _refreshController.refreshCompleted();
+            },
             child: Column(
               children: <Widget>[
-                AppBar(
-                  title: Text('Covid19'),
-                  centerTitle: true,
-                  automaticallyImplyLeading: false,
-                ),
-                ListTile(
-                  leading: Icon(Icons.person_outline),
-                  title: Text('About'),
-                  onTap: () {
-                    showDialog(
-                        context: context,
-                        builder: (context) {
-                          return AlertDialog(
-                            title: Text('About'),
-                            content: Text(
-                                'Build by Flutter!\nCreated by SOHAG\nFacebook: fb.com/sohagmahin\nEmail: sohagmahin@gmail.com'),
-                          );
-                        });
-                  },
-                ),
+                Expanded(child: PieChartScreen()),
+                Expanded(child: DataTableScreen()),
               ],
             ),
-          ),
-          body: Column(
-            children: <Widget>[
-              Expanded(child: PieChartScreen()),
-              Expanded(child: DataTableScreen()),
-            ],
           )),
     );
   }

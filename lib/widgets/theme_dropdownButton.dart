@@ -10,7 +10,7 @@ class ThemeDropdownButton extends StatefulWidget {
 class _ThemeDropdownButtonState extends State<ThemeDropdownButton> {
   @override
   Widget build(BuildContext context) {
-    var themeObj = Provider.of<ThemeProvider>(context, listen: false);
+    var themeObj = Provider.of<ThemeProvider>(context, listen: true);
     bool themeFlag = themeObj.isDarkTheme;
     String selectedItem = themeFlag ? 'Dark' : 'Light';
     return DropdownButton<String>(

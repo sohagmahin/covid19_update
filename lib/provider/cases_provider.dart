@@ -21,6 +21,11 @@ class CasesProvider extends ChangeNotifier {
     return _isLoading;
   }
 
+   void setLoadingStatus(bool status) {
+    _isLoading = status;
+    notifyListeners();
+  }
+
   Future fetchTotalCases() async {
     http.Response response;
     response = await http.get('https://corona.lmao.ninja/all#');
@@ -37,7 +42,7 @@ class CasesProvider extends ChangeNotifier {
     });
   }
 
-  void initialCall() async {
+  Future initialCall() async {
     await fetchTotalCases();
     await fetchAllCountryCases();
     _isLoading = false;

@@ -28,6 +28,7 @@ dependencies:
   http: ^0.12.0+4
   shared_preferences: ^0.5.6+3
   animated_text_kit: ^2.0.0
+  pull_to_refresh: ^1.5.8
 
 dev_dependencies:
   flutter_test:
