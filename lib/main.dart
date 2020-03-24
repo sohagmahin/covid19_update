@@ -1,4 +1,5 @@
 import 'package:coronavirustracker/provider/cases_provider.dart';
+import 'package:coronavirustracker/provider/theme_provider.dart';
 import 'package:coronavirustracker/screens/home_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -10,17 +11,20 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MultiProvider(
-      providers: [
-        ChangeNotifierProvider(
-          create: (context) => CasesProvider(),
-        ),
-      ],
-      child: MaterialApp(
-        debugShowCheckedModeBanner: false,
-        title: 'Coronavirus statistics!',
-        theme: ThemeData.dark().copyWith(cardColor: Colors.black54),
-        home: HomeScreen(),
-      ),
-    );
+        providers: [
+          ChangeNotifierProvider(create: (context) => CasesProvider()),
+          ChangeNotifierProvider(create: (context) => ThemeProvider()),
+        ],
+        child: Consumer<ThemeProvider>(
+          child: HomeScreen(),
+          builder: (context, themeModel, ch) {
+            return MaterialApp(
+              debugShowCheckedModeBanner: false,
+              title: 'Coronavirus Update!',
+              theme: themeModel.getTheme,
+              home: ch,
+            );
+          },
+        ));
   }
 }

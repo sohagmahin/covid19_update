@@ -11,6 +11,11 @@ class PieChartScreen extends StatefulWidget {
 
 class PieChart2State extends State {
   int touchedIndex;
+  @override
+  void initState() {
+    Provider.of<CasesProvider>(context, listen: false).initialCall();
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
