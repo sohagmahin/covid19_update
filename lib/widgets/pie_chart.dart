@@ -1,6 +1,6 @@
 import 'package:fl_chart/fl_chart.dart';
 import 'package:flutter/material.dart';
-import 'caution_type_writer.dart';
+import 'caution_typewriter.dart';
 import 'indicator.dart';
 import 'package:provider/provider.dart';
 import '../provider/cases_provider.dart';
@@ -25,12 +25,9 @@ class PieChart2State extends State {
         children: <Widget>[
           Row(
             children: <Widget>[
-              const SizedBox(
-                height: 10,
-              ),
               Expanded(
                 child: AspectRatio(
-                  aspectRatio: 1,
+                  aspectRatio: 0.8,
                   child: Consumer<CasesProvider>(
                       child: Center(
                         child: CircularProgressIndicator(),
@@ -48,7 +45,7 @@ class PieChart2State extends State {
                 ],
               ),
               const SizedBox(
-                width: 28,
+                width: 60,
               ),
             ],
           ),
@@ -75,7 +72,7 @@ class PieChart2State extends State {
           show: false,
         ),
         sectionsSpace: 0,
-        centerSpaceRadius: 40,
+        centerSpaceRadius: MediaQuery.of(context).size.height * 0.04,
         sections: showingSections(
           model.casesWD.confirmed,
           model.casesWD.deaths,

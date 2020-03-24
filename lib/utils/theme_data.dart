@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 
 ThemeData lightTheme = ThemeData(
     primarySwatch: Colors.orange,
-    textTheme: TextTheme(title: TextStyle(color: Colors.white)),
+    textTheme: TextTheme(title: TextStyle(color: Colors.black)),
     fontFamily: 'Balooda2');
 
 ThemeData darkTheme = ThemeData(

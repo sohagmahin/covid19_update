@@ -21,7 +21,7 @@ class CautionTypeWriter extends StatelessWidget {
               "Avoid touching eyes, nose and mouth"
             ],
             textStyle: TextStyle(
-                fontSize: 20,
+                fontSize: MediaQuery.of(context).size.height*0.025,
                 fontStyle: FontStyle.italic,
                 fontFamily: 'Merienda',
                 color: Colors.orange),
