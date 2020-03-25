@@ -1,16 +1,20 @@
-# coronavirustracker
+# Covid19 Update
 
-Covid 19 tracker application
+Covid 19 tracker application made by flutter.
 
-## Getting Started
+### Screenshot ###
+   <img src='/screenshots/untitled.gif' height=600>
 
-This project is a starting point for a Flutter application.
-
-A few resources to get you started if this is your first Flutter project:
-
-- [Lab: Write your first Flutter app](https://flutter.dev/docs/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://flutter.dev/docs/cookbook)
-
-For help getting started with Flutter, view our
-[online documentation](https://flutter.dev/docs), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+### Feature ###
+  * Pull to Refresh
+  * Dark Mode
+  
+### Packages ###
+   * [Provider](https://pub.dev/packages/provider)
+   * [fl_chart](https://pub.dev/packages/fl_chart)
+   * [http](https://pub.dev/packages/http)
+   * [shared_preferences](https://pub.dev/packages/shared_preferences)
+   * [animated_text_kit](https://pub.dev/packages/animated_text_kit)
+   * [pull_to_refresh](https://pub.dev/packages/pull_to_refresh)
+### API ###
+   * [corona.lmao.ninja](https://github.com/NovelCOVID/API)
