@@ -26,6 +26,7 @@ class DataTableScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    double _origialWidth = MediaQuery.of(context).size.width;
     return Card(
       child: Consumer<CasesProvider>(
         child: Center(
@@ -38,7 +39,7 @@ class DataTableScreen extends StatelessWidget {
               : ListView(
                   children: <Widget>[
                     DataTable(
-                        columnSpacing: 12,
+                        columnSpacing: _origialWidth*0.012,
                         columns: [
                           DataColumn(label: Text('ID')),
                           DataColumn(label: Text('Country')),

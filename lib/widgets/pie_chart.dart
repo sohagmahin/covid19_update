@@ -21,62 +21,67 @@ class PieChart2State extends State {
   @override
   Widget build(BuildContext context) {
     return Card(
-      child: Column(
-        children: <Widget>[
-          Row(
-            children: <Widget>[
-              Expanded(
-                child: AspectRatio(
-                  aspectRatio: 0.8,
+      child: Padding(
+        padding:
+            EdgeInsets.only(right: MediaQuery.of(context).size.width * 0.05),
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.start,
+          children: <Widget>[
+            Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: <Widget>[
+                Expanded(
                   child: Consumer<CasesProvider>(
                       child: Center(
                         child: CircularProgressIndicator(),
                       ),
                       builder: (context, model, ch) {
-                        return model.loadingStatus ? ch : _buildPieChart(model);
+                        return model.loadingStatus
+                            ? ch
+                            : Container(child: _buildPieChart(model));
                       }),
                 ),
-              ),
-              Column(
-                mainAxisAlignment: MainAxisAlignment.spaceAround,
-                children: <Widget>[
-                  _buildLabelText(),
-                  _buildIndicators(),
-                ],
-              ),
-              const SizedBox(
-                width: 60,
-              ),
-            ],
-          ),
-          CautionTypeWriter(),
-        ],
+                Column(
+                  mainAxisAlignment: MainAxisAlignment.spaceAround,
+                  children: <Widget>[
+                    _buildLabelText(),
+                    _buildIndicators(),
+                  ],
+                ),
+              ],
+            ),
+            CautionTypeWriter(),
+          ],
+        ),
       ),
     );
   }
 
-  PieChart _buildPieChart(CasesProvider model) {
-    return PieChart(
-      PieChartData(
-        pieTouchData: PieTouchData(touchCallback: (pieTouchResponse) {
-          setState(() {
-            if (pieTouchResponse.touchInput is FlLongPressEnd ||
-                pieTouchResponse.touchInput is FlPanEnd) {
-              touchedIndex = -1;
-            } else {
-              touchedIndex = pieTouchResponse.touchedSectionIndex;
-            }
-          });
-        }),
-        borderData: FlBorderData(
-          show: false,
-        ),
-        sectionsSpace: 0,
-        centerSpaceRadius: MediaQuery.of(context).size.height * 0.04,
-        sections: showingSections(
-          model.casesWD.confirmed,
-          model.casesWD.deaths,
-          model.casesWD.recovered,
+  Widget _buildPieChart(CasesProvider model) {
+    return Container(
+      height: MediaQuery.of(context).size.height * 0.33,
+      child: PieChart(
+        PieChartData(
+          pieTouchData: PieTouchData(touchCallback: (pieTouchResponse) {
+            setState(() {
+              if (pieTouchResponse.touchInput is FlLongPressEnd ||
+                  pieTouchResponse.touchInput is FlPanEnd) {
+                touchedIndex = -1;
+              } else {
+                touchedIndex = pieTouchResponse.touchedSectionIndex;
+              }
+            });
+          }),
+          borderData: FlBorderData(
+            show: false,
+          ),
+          sectionsSpace: 0,
+          centerSpaceRadius: MediaQuery.of(context).size.height * 0.04,
+          sections: showingSections(
+            model.casesWD.confirmed,
+            model.casesWD.deaths,
+            model.casesWD.recovered,
+          ),
         ),
       ),
     );
@@ -144,10 +149,12 @@ class PieChart2State extends State {
 
   List<PieChartSectionData> showingSections(
       int confirmedValue, int deathsValue, int recoveredValue) {
+    double _originalWidth = MediaQuery.of(context).size.width;
     return List.generate(3, (i) {
       final isTouched = i == touchedIndex;
-      final double fontSize = isTouched ? 25 : 16;
-      final double radius = isTouched ? 60 : 50;
+      final double fontSize = isTouched ? 20 : 13;
+      final double radius =
+          isTouched ? _originalWidth * 0.15 : _originalWidth * 0.12;
       switch (i) {
         case 0:
           return PieChartSectionData(

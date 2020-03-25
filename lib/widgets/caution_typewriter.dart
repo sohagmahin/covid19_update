@@ -4,8 +4,9 @@ import 'package:animated_text_kit/animated_text_kit.dart';
 class CautionTypeWriter extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
+    double _originalWidth = MediaQuery.of(context).size.width;
     return Padding(
-      padding: const EdgeInsets.only(top: 5.0, left: 15.0, right: 10.0),
+      padding:  EdgeInsets.only(left: _originalWidth*0.015, right: _originalWidth*0.010),
       child: SizedBox(
         width: MediaQuery.of(context).size.width,
         child: TypewriterAnimatedTextKit(

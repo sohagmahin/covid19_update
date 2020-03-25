@@ -21,7 +21,7 @@ class CasesProvider extends ChangeNotifier {
     return _isLoading;
   }
 
-   void setLoadingStatus(bool status) {
+  void setLoadingStatus(bool status) {
     _isLoading = status;
     notifyListeners();
   }
