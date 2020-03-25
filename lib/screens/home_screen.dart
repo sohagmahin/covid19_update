@@ -16,7 +16,7 @@ class HomeScreen extends StatelessWidget {
       onWillPop: () => exitDialog(context),
       child: Scaffold(
           appBar: AppBar(
-            title: Text('Covid19 Update'),
+            title: Text('Coronavirus Update'),
             centerTitle: true,
             actions: <Widget>[ThemeDropdownButton()],
           ),
