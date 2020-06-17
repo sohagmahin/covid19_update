@@ -4,6 +4,9 @@ import 'package:coronavirustracker/models/cases_wd.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:http/http.dart' as http;
 
+const String urlTotalCases='https://corona.lmao.ninja/v2/all#';
+const String urlAllCntryCases ='https://corona.lmao.ninja/v2/countries';
+
 class CasesProvider extends ChangeNotifier {
   bool _isLoading = true;
   CasesWD _casesWD;
@@ -28,14 +31,14 @@ class CasesProvider extends ChangeNotifier {
 
   Future fetchTotalCases() async {
     http.Response response;
-    response = await http.get('https://corona.lmao.ninja/all#');
+    response = await http.get(urlTotalCases);
     Map map = json.decode(response.body);
     _casesWD = CasesWD.fromJson(map);
   }
 
   Future fetchAllCountryCases() async {
     http.Response response;
-    response = await http.get('https://corona.lmao.ninja/countries');
+    response = await http.get(urlAllCntryCases);
     List list = json.decode(response.body);
     list.forEach((country) {
       _countyCases.add(CasesCN.fromJson(country));
