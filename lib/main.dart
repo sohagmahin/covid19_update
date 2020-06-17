@@ -23,7 +23,7 @@ class MyApp extends StatelessWidget {
           builder: (context, themeModel, ch) {
             return MaterialApp(
               debugShowCheckedModeBanner: false,
-              title: 'Coronavirus Update!',
+              title: 'Covid19 Updater!',
               theme: themeModel.getTheme,
               home: ch,
             );
