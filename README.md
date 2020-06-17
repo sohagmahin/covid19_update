@@ -1,4 +1,4 @@
-# Covid19 Update
+# Covid19 Updater
 
 Covid 19 tracker application made by flutter.
 
