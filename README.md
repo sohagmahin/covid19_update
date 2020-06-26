@@ -1,3 +1,5 @@
+![Dart CI](https://github.com/sohagmahin/coronavirus_update/workflows/Dart%20CI/badge.svg?branch=master)
+
 # Covid19 Updater
 
 Covid 19 tracker application made by flutter.
