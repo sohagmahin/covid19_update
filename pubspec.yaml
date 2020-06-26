@@ -14,7 +14,7 @@ description: Covid 19 tracker application
 version: 1.0.0+2
 
 environment:
-  sdk: ">=2.1.0 <3.0.0"
+  sdk: ">=2.2.0 <3.0.0"
 
 dependencies:
   flutter:
