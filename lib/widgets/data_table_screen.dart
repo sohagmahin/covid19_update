@@ -33,7 +33,7 @@ class DataTableScreen extends StatelessWidget {
           child: CircularProgressIndicator(),
         ),
         builder: (context, casesModel, ch) {
-          var casesCountryList = casesModel.casesCn;
+          var casesCountryList = casesModel.countryCases;
           return casesModel.loadingStatus
               ? ch
               : ListView(

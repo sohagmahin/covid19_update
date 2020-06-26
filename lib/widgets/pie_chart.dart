@@ -78,9 +78,9 @@ class PieChart2State extends State {
           sectionsSpace: 0,
           centerSpaceRadius: MediaQuery.of(context).size.height * 0.04,
           sections: showingSections(
-            model.casesWD.confirmed,
-            model.casesWD.deaths,
-            model.casesWD.recovered,
+            model.worldCases.confirmed,
+            model.worldCases.deaths,
+            model.worldCases.recovered,
           ),
         ),
       ),
