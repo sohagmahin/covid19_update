@@ -3,8 +3,6 @@ name: Dart CI
 on:
   push:
     branches: [ master ]
-    tags: 
-      - '*'
   pull_request:
     branches: [ master ]
 
@@ -24,8 +22,3 @@ jobs:
     - run: flutter pub get
     - run: flutter test
     - run: flutter build apk
-    - name: Create a Release APK
-      uses: ncipollo/release-action@v1
-      with:
-        artifacts: "build/app/outputs/apk/debug/*.apk"
-        token: ${{ secrets.GITHUB_TOKEN }}
