@@ -22,6 +22,11 @@ jobs:
     - run: flutter pub get
     - run: flutter test
     - run: flutter build apk
+    - name: Upload coverage to Codecov
+      uses: codecov/codecov-action@v1
+      with:
+        token: ${{ secrets.CODECOV_TOKEN }}
+        file: coverage/lcov.info
     - name: Create a Release APK
       uses: ncipollo/release-action@v1
       with:
