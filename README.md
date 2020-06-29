@@ -2,7 +2,8 @@
 
 # Covid19 Updater
 
-Covid 19 tracker application made by flutter.
+Covid 19 tracker application made by flutter.<br>
+# [Codemagic](https://codemagic.io/app/5ef61deb7901d8001220c1e8)
 
 ### Screenshot ###
    <img src='/screenshots/untitled.gif' height=600>
