@@ -1,4 +1,5 @@
 ![Dart CI](https://github.com/sohagmahin/coronavirus_update/workflows/Dart%20CI/badge.svg?branch=master)
+[![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg?style=flat-square)](http://makeapullrequest.com)
 
 # Covid19 Updater
 
