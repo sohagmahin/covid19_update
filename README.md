@@ -2,7 +2,9 @@
 
 # Covid19 Updater
 
-Covid 19 tracker application made by flutter.<br>
+Covid 19 is a simple and minimalistic covid tracker application. It is made by flutter and dart.<br>
+I made this repository only for learning purposes.
+
 # [Codemagic](https://codemagic.io/app/5ef61deb7901d8001220c1e8)
 
 ### Screenshot ###
